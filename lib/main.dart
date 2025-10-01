@@ -1,12 +1,43 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(CalculatorApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+class CalculatorApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Calculator App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: CalculatorScreen(),
+    );
+  }
+}
+
+class CalculatorScreen extends StatefulWidget {
+  @override
+  _CalculatorScreenState createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  String display = '0';
+  String firstOperand = '';
+  String operator = '';
+  bool shouldResetDisplay = false;
+
+  // Handle number button press
+  void onNumberPressed(String number) {
+    setState(() {
+      if (display == '0' || shouldResetDisplay) {
+        display = number;
+        shouldResetDisplay = false;
+      } else {
+        display += number;
+      }
+    });
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
