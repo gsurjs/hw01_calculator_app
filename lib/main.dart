@@ -47,6 +47,48 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       shouldResetDisplay = true;
     });
   }
+
+  // Calculate result
+  void calculateResult() {
+    if (firstOperand.isEmpty || operator.isEmpty) return;
+
+    double num1 = double.parse(firstOperand);
+    double num2 = double.parse(display);
+    double result = 0;
+
+    // Perform calculation based on operator
+    switch (operator) {
+      case '+':
+        result = num1 + num2;
+        break;
+      case '-':
+        result = num1 - num2;
+        break;
+      case '*':
+        result = num1 * num2;
+        break;
+      case '/':
+        // Handle division by zero
+        if (num2 == 0) {
+          setState(() {
+            display = 'Error';
+            firstOperand = '';
+            operator = '';
+          });
+          return;
+        }
+        result = num1 / num2;
+        break;
+    }
+
+    setState(() {
+      // Remove decimal point if result is whole number
+      display = result % 1 == 0 ? result.toInt().toString() : result.toString();
+      firstOperand = '';
+      operator = '';
+      shouldResetDisplay = true;
+    });
+  }
   
   // This widget is the root of your application.
   @override
