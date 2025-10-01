@@ -89,7 +89,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       shouldResetDisplay = true;
     });
   }
-  
+
+  // Clear calculator
+  void clear() {
+    setState(() {
+      display = '0';
+      firstOperand = '';
+      operator = '';
+      shouldResetDisplay = false;
+    });
+  }
+
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
