@@ -104,7 +104,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   Widget buildButton(String text, Color color, VoidCallback onPressed) {
     return Expanded(
       child: Container(
-        margin: EdgeInsets.all(4),
+        margin: EdgeInsets.symmetric(horizontal: 6, vertical: 3),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: color,
@@ -120,35 +120,58 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     );
   }
 
-  // This widget is the root of your application.
+ //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Calculator')),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: Text('Calculator'),
+        backgroundColor: Colors.blueGrey[800],
+        elevation: 0,
+      ),
       body: Column(
         children: [
           // Display area
           Container(
-            padding: EdgeInsets.all(24),
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+            decoration: BoxDecoration(
+              color: Colors.blueGrey[800],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black26,
+                  blurRadius: 8,
+                  offset: Offset(0, 4),
+                ),
+              ],
+            ),
             alignment: Alignment.centerRight,
             child: Text(
               display,
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 52, 
+                fontWeight: FontWeight.w300,
+                color: Colors.white,
+                letterSpacing: 1.5,
+              ),
             ),
           ),
-          Divider(),
           // Calculator buttons
           Expanded(
-            child: Column(
-              children: [
-                // Row 1: 7, 8, 9, /
-                Expanded(
-                  child: Row(
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Row 1: 7, 8, 9, /
+                  Expanded(
+                    child: Row(
                     children: [
-                      buildButton('7', Colors.grey[700]!, () => onNumberPressed('7')),
-                      buildButton('8', Colors.grey[700]!, () => onNumberPressed('8')),
-                      buildButton('9', Colors.grey[700]!, () => onNumberPressed('9')),
-                      buildButton('/', Colors.orange, () => onOperatorPressed('/')),
+                      buildButton('7', Colors.indigo[400]!, () => onNumberPressed('7')),
+                      buildButton('8', Colors.indigo[400]!, () => onNumberPressed('8')),
+                      buildButton('9', Colors.indigo[400]!, () => onNumberPressed('9')),
+                      buildButton('/', Colors.teal[600]!, () => onOperatorPressed('/')),
                     ],
                   ),
                 ),
@@ -156,10 +179,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 Expanded(
                   child: Row(
                     children: [
-                      buildButton('4', Colors.grey[700]!, () => onNumberPressed('4')),
-                      buildButton('5', Colors.grey[700]!, () => onNumberPressed('5')),
-                      buildButton('6', Colors.grey[700]!, () => onNumberPressed('6')),
-                      buildButton('*', Colors.orange, () => onOperatorPressed('*')),
+                      buildButton('4', Colors.indigo[400]!, () => onNumberPressed('4')),
+                      buildButton('5', Colors.indigo[400]!, () => onNumberPressed('5')),
+                      buildButton('6', Colors.indigo[400]!, () => onNumberPressed('6')),
+                      buildButton('*', Colors.teal[600]!, () => onOperatorPressed('*')),
                     ],
                   ),
                 ),
@@ -167,10 +190,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 Expanded(
                   child: Row(
                     children: [
-                      buildButton('1', Colors.grey[700]!, () => onNumberPressed('1')),
-                      buildButton('2', Colors.grey[700]!, () => onNumberPressed('2')),
-                      buildButton('3', Colors.grey[700]!, () => onNumberPressed('3')),
-                      buildButton('-', Colors.orange, () => onOperatorPressed('-')),
+                      buildButton('1', Colors.indigo[400]!, () => onNumberPressed('1')),
+                      buildButton('2', Colors.indigo[400]!, () => onNumberPressed('2')),
+                      buildButton('3', Colors.indigo[400]!, () => onNumberPressed('3')),
+                      buildButton('-', Colors.teal[600]!, () => onOperatorPressed('-')),
                     ],
                   ),
                 ),
@@ -178,14 +201,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 Expanded(
                   child: Row(
                     children: [
-                      buildButton('C', Colors.red, clear),
-                      buildButton('0', Colors.grey[700]!, () => onNumberPressed('0')),
-                      buildButton('=', Colors.green, calculateResult),
-                      buildButton('+', Colors.orange, () => onOperatorPressed('+')),
-                    ],
+                      buildButton('C', Colors.deepOrange[400]!, clear),
+                      buildButton('0', Colors.indigo[400]!, () => onNumberPressed('0')),
+                      buildButton('=', Colors.amber[700]!, calculateResult),
+                      buildButton('+', Colors.teal[600]!, () => onOperatorPressed('+')),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
