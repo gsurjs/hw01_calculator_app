@@ -38,6 +38,16 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       }
     });
   }
+
+  // Handle operator button press
+  void onOperatorPressed(String op) {
+    setState(() {
+      firstOperand = display;
+      operator = op;
+      shouldResetDisplay = true;
+    });
+  }
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
