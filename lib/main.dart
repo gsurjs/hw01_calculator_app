@@ -100,7 +100,25 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     });
   }
 
-
+  // Build calculator button
+  Widget buildButton(String text, Color color, VoidCallback onPressed) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(4),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            padding: EdgeInsets.all(24),
+          ),
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 24, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
 
   // This widget is the root of your application.
   @override
